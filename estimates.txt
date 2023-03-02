@@ -1,0 +1,22 @@
+Recover Time Objective (RTO) is the maximum time your platform or service can be unavailable
+Recovery Point Objective (RPO) is the maximum amount of time that your system can lose data for
+
+1. Minimum RTO for a single AZ outage
+- Problem happens (1 min)
+- An amount of time passes before an alert triggers (4 min)
+- Automatically switch to second availability zone (5 min)
+Estimated minimum RTO for a single AZ outage: ~10 min
+
+2. Minimum RTO for a single region outage
+- Time to bring read replica as a standalone primary instance takes around 15-20 minutes
+- Time to apply new DNS changes in application to connect to new endpoint can take anywhere from 15-120 minutes
+Estimated minimum RTO for a single region outage about 15-60 min
+
+3. Minimum RPO for a single AZ outage
+- Application continues to run and serve a request for 60-120 sec but is failing to store the data it receives
+Estimated minimum RTO for a single region outage: 2 min
+
+4. Minimum RPO for a single region outage
+- Database is updated asynchronously between Primary and read replica in Multi-AZ, Multi-region mode
+- Initial setup and installation time, it takes minimum 15-20 minutes for system to get ready
+Estimated minimum RPO for a single region outage: ~15 min
